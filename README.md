@@ -41,4 +41,4 @@ For more detail:
 ```
 python train.py --help
 ```
-Note: Make sure all the folders exists. I was to lazy to perform some logics in my code, sorry about that!
+Note: Make sure all the folders exists. I was too lazy to perform some logics in my code, sorry about that!
