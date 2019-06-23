@@ -1,7 +1,5 @@
 # Face-Recognition-with-Transfer-Learning-Simple-
 
-
-![alt text](https://github.com/MinhBuiQuang/Face-Recognition-with-Transfer-Learning-Simple-/blob/master/anh1.png?raw=true)
 ## Install project dependencies
 ```
 pip install -r requirements.txt
@@ -44,3 +42,5 @@ For more detail:
 python train.py --help
 ```
 Note: Make sure all the folders exists. I was too lazy to perform some logics in my code, sorry about that!
+
+![alt text](https://github.com/MinhBuiQuang/Face-Recognition-with-Transfer-Learning-Simple-/blob/master/anh1.png?raw=true)
