@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Demo Face Recognition</title>
+</head>
+<body>
+        <h1>Demo Face Recognition</h1>
+        <h2>With VGG16 and Keras</h2>
+        
+        <form id="uploader" method="POST" action="/predict" enctype = "multipart/form-data">
+          <div class="input-file-container">  
+            <input class="input-file" id="my-file" type="file" name="picture">
+            <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+            <hr>
+          </div>
+        </form>
+        <div style="text-align: center;max-height: 500px;"><img id="img" id="imagestyle" src="" /></div>
+        
+        <p class="txtcenter">It's just a test, not really usable.<br /></p>
+        <p class="txtcenter copy">For detail: My <a href="https://github.com/MinhBuiQuang/Face-Recognition-with-Transfer-Learning-Simple-">Github</a><br /></p>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".input-file" ),  
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+        
+    button.addEventListener( "keydown", function( event ) {  
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+            fileInput.focus();  
+        }  
+    });
+    button.addEventListener( "click", function( event ) {
+        fileInput.focus();
+        return false;
+    });  
+    fileInput.addEventListener( "change", function( event ) {  
+        $("#uploader").submit()
+    });  
+    // document.getElementById("file").onchange = function() {
+    //     document.getElementById("uploader").submit();
+    // };
+    $("#uploader").submit(function(e) {
+        e.preventDefault();    
+        var formData = new FormData(this);
+        $.ajax({
+            url: '/predict',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                $('#img').attr('src', `data:image/png;base64,${data}`);
+
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+</script>
+</html>
